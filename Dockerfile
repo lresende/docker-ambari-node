@@ -29,7 +29,7 @@ RUN chmod 600 /root/.ssh/config && \
 RUN echo 'root:passw0rd' | chpasswd
 
 # install OpenJDK
-RUN yum install -y java-1.7.0-openjdk
+RUN yum install -y java-1.8.0-openjdk
 ENV JAVA_HOME /usr/java/default
 ENV PATH $PATH:$JAVA_HOME/bin
 
@@ -37,6 +37,5 @@ ENV PATH $PATH:$JAVA_HOME/bin
 RUN sed  -i "/^[^#]*UsePAM/ s/.*/#&/"  /etc/ssh/sshd_config
 RUN echo "UsePAM no" >> /etc/ssh/sshd_config
 RUN echo "Port 2122" >> /etc/ssh/sshd_config
-
 
 CMD ["/bin/bash", ""]
