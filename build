@@ -25,11 +25,11 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
     platform='osx'   
 fi
 
-## build docker image
-if [[ $platform == 'osx' ]]; then
-  docker rmi -f lresende/ambari-node:1.0
-  docker build --rm --no-cache -t lresende/ambari-node:1.0 .
-else
-  sudo docker rmi -f lresende/ambari-node:1.7
-  sudo docker build --rm --no-cache -t lresende/ambari-node:1.0 .
+if [[ $platform != 'osx' ]]; then
+  alias docker='sudo docker'
 fi
+
+## build docker image
+
+docker rmi -f lresende/ambari-node:1.0
+docker build --rm --no-cache -t lresende/ambari-node:1.0 .

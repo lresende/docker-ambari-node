@@ -25,8 +25,8 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
     platform='osx'   
 fi
 
-if [[ $platform == 'osx' ]]; then
-  docker run -d lresende/ambari-node:1.0
-else
-  sudo docker run -d lresende/ambari-node:1.0
+if [[ $platform != 'osx' ]]; then
+  alias docker='sudo docker'
 fi
+
+docker run -d lresende/ambari-node:1.0
